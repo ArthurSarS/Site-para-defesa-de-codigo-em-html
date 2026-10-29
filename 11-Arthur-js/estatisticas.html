@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estatísticas Regionais | CulturaBrasil</title>
+    <link rel="stylesheet" href="css/puro.css">
+    <style>
+        .puro-metricas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .puro-metrica-card {
+            background-color: var(--puro-surface);
+            border: 1px solid var(--puro-border);
+            border-radius: var(--puro-radius);
+            padding: 1.25rem;
+            text-align: center;
+            box-shadow: var(--puro-shadow);
+        }
+        .puro-metrica-valor {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--puro-primary);
+            display: block;
+            margin-top: 0.25rem;
+        }
+        .puro-metrica-legenda {
+            font-size: 0.85rem;
+            color: var(--puro-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+    </style>
+</head>
+<body>
+    <header class="puro-navbar">
+        <div class="puro-nav-container">
+            <a href="index.html" class="puro-brand">
+                <span style="font-size: 1.3rem;">🇧🇷</span> CulturaBrasil
+            </a>
+
+            <nav aria-label="Navegação Principal Pura">
+                <ul class="puro-nav-menu">
+                    <li class="puro-nav-item"><a href="index.html">Início</a></li>
+                    <li class="puro-nav-item"><a href="norte.html">Norte</a></li>
+                    <li class="puro-nav-item"><a href="nordeste.html">Nordeste</a></li>
+                    <li class="puro-nav-item"><a href="centro-oeste.html">Centro-Oeste</a></li>
+                    <li class="puro-nav-item"><a href="sudeste.html">Sudeste</a></li>
+                    <li class="puro-nav-item"><a href="sul.html">Sul</a></li>
+                    <li class="puro-nav-item"><a href="diario.html">Diário</a></li>
+                    <li class="puro-nav-item"><a href="galeria.html">Galeria</a></li>
+                    <li class="puro-nav-item"><a href="estatisticas.html" class="active">Estatísticas</a></li>
+                    <li class="puro-nav-item"><a href="sobre.html">Sobre</a></li>
+                    <li class="puro-nav-item"><a href="contato.html">Contato</a></li>
+                    <li class="puro-nav-item"><a href="https://educa.ibge.gov.br/jovens/conheca-o-brasil/territorio/brasil.html" target="_blank" rel="noopener noreferrer">IBGE<span class="puro-external-badge">Ext</span></a></li>
+                </ul>
+            </nav>
+
+            <div class="puro-controls">
+                <button type="button" id="btnTemaPuro" class="puro-theme-btn" title="Alternar tema">
+                    Modo Escuro 🌙
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="puro-container">
+        <section class="puro-banner">
+            <span class="puro-badge-vanilla">Panorama Geográfico & Demográfico</span>
+            <h1>Painel de Indicadores e Estatísticas Regionais</h1>
+            <p>
+                Consulte dados territoriais consolidados pelo IBGE e IPHAN sobre as cinco regiões brasileiras. Utilize os filtros interativos para comparar população, área, biomas predominantes e as manifestações culturais de maior destaque.
+            </p>
+        </section>
+
+        <section class="puro-metricas-grid" aria-label="Métricas Consolidadas">
+            <article class="puro-metrica-card">
+                <span class="puro-metrica-legenda">Total de Estados (UF)</span>
+                <span class="puro-metrica-valor" id="puroTotalEstados">26 + DF</span>
+            </article>
+
+            <article class="puro-metrica-card">
+                <span class="puro-metrica-legenda">População Total Aprox.</span>
+                <span class="puro-metrica-valor" id="puroTotalPopulacao">204 mi</span>
+            </article>
+
+            <article class="puro-metrica-card">
+                <span class="puro-metrica-legenda">Área Territorial Total</span>
+                <span class="puro-metrica-valor" id="puroTotalArea">8.510 mil km²</span>
+            </article>
+
+            <article class="puro-metrica-card">
+                <span class="puro-metrica-legenda">Média por Região</span>
+                <span class="puro-metrica-valor" id="puroMediaPop">40.8 mi</span>
+            </article>
+        </section>
+
+        <section class="puro-card">
+            <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; color: var(--puro-primary);">
+                Tabela Comparativa das 5 Regiões do Brasil
+            </h2>
+            <p style="color: var(--puro-text-muted); font-size: 0.95rem; margin-bottom: 1.25rem;">
+                Filtre os dados por busca textual ou por bioma predominante para recalcular as métricas automaticamente:
+            </p>
+
+            <div class="puro-filter-bar">
+                <div style="flex: 1; min-width: 220px;">
+                    <label for="puroInputBusca" style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.35rem;">Buscar região, patrimônio ou bioma:</label>
+                    <input type="text" id="puroInputBusca" class="puro-input" placeholder="Digite para filtrar instantaneamente..." style="width: 100%;">
+                </div>
+
+                <div style="min-width: 200px;">
+                    <label for="puroSelectBioma" style="display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.35rem;">Filtrar por Bioma:</label>
+                    <select id="puroSelectBioma" class="puro-select" style="width: 100%;">
+                        <option value="Todos">Todos os Biomas</option>
+                        <option value="Amazônia">Amazônia</option>
+                        <option value="Caatinga">Caatinga</option>
+                        <option value="Cerrado">Cerrado</option>
+                        <option value="Mata Atlântica">Mata Atlântica</option>
+                        <option value="Pampa">Pampa</option>
+                    </select>
+                </div>
+
+                <div style="align-self: flex-end;">
+                    <button type="button" id="puroBtnReset" class="puro-btn puro-btn-outline">
+                        Limpar Filtros
+                    </button>
+                </div>
+
+                <div style="align-self: flex-end; margin-left: auto;">
+                    <span id="puroTotalLinhas" style="font-weight: 600; font-size: 0.9rem; color: var(--puro-text-muted);">
+                        5 de 5 regiões
+                    </span>
+                </div>
+            </div>
+
+            <div class="puro-table-wrapper">
+                <table class="puro-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Região</th>
+                            <th scope="col">Unidades Federativas</th>
+                            <th scope="col">População Estimada (IBGE)</th>
+                            <th scope="col">Área Territorial</th>
+                            <th scope="col">Bioma Predominante</th>
+                            <th scope="col">Principal Manifestação Cultural</th>
+                        </tr>
+                    </thead>
+                    <tbody id="puroTabelaCorpo">
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="margin-top: 1.5rem; padding: 1rem; background-color: var(--puro-bg); border-radius: var(--puro-radius); font-size: 0.9rem; border: 1px solid var(--puro-border);">
+                <strong>Fonte dos Indicadores:</strong> Dados compilados com base no Censo Demográfico do IBGE e inventários de Patrimônio Imaterial do IPHAN, cobrindo todas as 27 Unidades da Federação agrupadas nas 5 macro-regiões oficiais.
+            </div>
+        </section>
+
+        <section class="puro-grid">
+            <article class="puro-grid-item">
+                <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--puro-primary);">Biodiversidade & Biomas</h3>
+                <p style="font-size: 0.9rem; color: var(--puro-text-muted);">
+                    Do Cerrado e Pantanal no Centro-Oeste à imensidão da Amazônia no Norte e aos Pampas no Sul, os ecossistemas moldam os modos de vida e tradições locais.
+                </p>
+            </article>
+
+            <article class="puro-grid-item">
+                <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--puro-primary);">Patrimônio Imaterial</h3>
+                <p style="font-size: 0.9rem; color: var(--puro-text-muted);">
+                    Celebrações populares como o Frevo, Círio de Nazaré, Boi-Bumbá de Parintins e o Samba são tombadas como tesouros da memória do povo brasileiro.
+                </p>
+            </article>
+
+            <article class="puro-grid-item">
+                <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--puro-primary);">Gastronomia Regional</h3>
+                <p style="font-size: 0.9rem; color: var(--puro-text-muted);">
+                    Sabores autênticos como o acarajé, pato no tucupi, arroz com pequi, feijão tropeiro e o churrasco gaúcho refletem a união de heranças indígenas, africanas e europeias.
+                </p>
+            </article>
+
+            <article class="puro-grid-item">
+                <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--puro-primary);">Integração Territorial</h3>
+                <p style="font-size: 0.9rem; color: var(--puro-text-muted);">
+                    Com mais de 8,5 milhões de km², o Brasil se destaca pela convivência pacífica e troca contínua entre suas diversas identidades regionais.
+                </p>
+            </article>
+        </section>
+    </main>
+
+    <footer class="puro-footer">
+        <div class="puro-footer-content">
+            <div>
+                <h4 style="color: #ffffff; margin-bottom: 0.5rem; font-weight: 700;">CulturaBrasil &bull; Indicadores Regionais</h4>
+                <p style="font-size: 0.9rem;">Informações e Estatísticas das 5 Regiões do Brasil</p>
+            </div>
+            <div>
+                <ul style="list-style: none; display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="sobre.html">Sobre o Projeto</a></li>
+                    <li><a href="diario.html">Diário Cultural</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/puro.js"></script>
+</body>
+</html>
